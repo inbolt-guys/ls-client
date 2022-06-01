@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package Localizer;
+
+service Localizer {
+  rpc GetPose (EmptyMessage) returns (stream PoseMessage) {}
+  rpc ResetLocState (EmptyMessage) returns (EmptyMessage) {}
+}
+
+message EmptyMessage {}
+
+
+message Translation {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message Rotation {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+  float w = 4;
+}
+
+message PoseMessage {
+  double timestamp = 1;
+  Translation translation = 2 ;
+  Rotation rotation = 3 ;
+  bool is_tracked = 4;
+}
